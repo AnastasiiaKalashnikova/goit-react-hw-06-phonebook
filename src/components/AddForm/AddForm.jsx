@@ -1,19 +1,23 @@
 import { Formik, Field, ErrorMessage } from 'formik';
 import { AddBtn, StyledForm } from './AddForm.styled';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/contactsSlice';
 
 const Schema = Yup.object().shape({
   name: Yup.string().min(2).required('must be filled'),
   number: Yup.number('not a number').required('must be filled'),
 });
 
-export const AddForm = ({ onSubmit }) => {
+export const AddForm = () => {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
       validationSchema={Schema}
       onSubmit={(value, actions) => {
-        onSubmit(value);
+        dispatch(addContact(value));
+        //onSubmit(value);
         actions.resetForm();
       }}
     >

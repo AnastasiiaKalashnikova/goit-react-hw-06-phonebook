@@ -8,6 +8,7 @@ const contactsSlice = createSlice({
   // Об'єкт редюсерів
   reducers: {
     addContact(state, action) {
+      //логіка перевірки
       state.items.push(action.payload);
     },
     deleteContact(state, action) {

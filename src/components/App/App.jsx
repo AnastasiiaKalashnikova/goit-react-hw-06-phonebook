@@ -4,6 +4,8 @@ import { Filter } from 'components/Filter/Filter';
 import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { Wrapper } from './App.styled';
+import { useSelector } from 'react-redux';
+import { selectContacts, selectVisibleContacts } from '../../redux/selector';
 
 const savedContacts = window.localStorage.getItem('contactList');
 
@@ -11,10 +13,13 @@ export const App = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
-  const filteredContacts = contacts.filter(contact => {
-    const arr = contact.name.toLowerCase().includes(filter.toLowerCase());
-    return arr;
-  });
+  const filteredContacts = useSelector(selectVisibleContacts);
+  console.log(filteredContacts);
+
+  //const filteredContacts = contacts.filter(contact => {
+  //  const arr = contact.name.toLowerCase().includes(filter.toLowerCase());
+  //  return arr;
+  //});
 
   const addContact = contact => {
     //перевірка на наявність
@@ -54,7 +59,7 @@ export const App = () => {
   return (
     <Wrapper>
       <h1>Phonebook</h1>
-      <AddForm onSubmit={addContact} />
+      <AddForm />
       <h2>Contacts</h2>
       <Filter toFilter={toFilter} />
       <ContactList list={filteredContacts} onDelete={deleteContact} />
