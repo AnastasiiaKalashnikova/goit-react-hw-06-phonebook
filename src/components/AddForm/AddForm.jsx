@@ -3,7 +3,6 @@ import { AddBtn, StyledForm } from './AddForm.styled';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contactsSlice';
-import { nanoid } from 'nanoid';
 
 const Schema = Yup.object().shape({
   name: Yup.string().min(2).required('must be filled'),
