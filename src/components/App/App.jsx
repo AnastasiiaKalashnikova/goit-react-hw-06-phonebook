@@ -13,7 +13,6 @@ const selectVisibleContacts = (contacts, filter) => {
 
 export const App = () => {
   const contacts = useSelector(selectContacts);
-  console.log(contacts);
   const filter = useSelector(selectFilter);
   const filteredContacts = selectVisibleContacts(contacts, filter);
 

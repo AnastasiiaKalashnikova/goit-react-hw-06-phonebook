@@ -13,7 +13,6 @@ const Schema = Yup.object().shape({
 export const AddForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  console.log(contacts);
 
   return (
     <Formik
